@@ -1,0 +1,260 @@
+/* ==============================================================================
+   KAVACH-X DASHBOARD STYLES (USER COMMAND CENTER)
+   ============================================================================== */
+
+.dashboard-header {
+  background: linear-gradient(135deg, var(--primary-navy), var(--secondary-navy));
+  color: #fff;
+  padding: 2.2rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  box-shadow: var(--shadow-subtle);
+}
+
+.dashboard-title {
+  font-weight: 800;
+  font-size: 1.85rem;
+  letter-spacing: -0.5px;
+}
+
+.user-status-pill {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Quick Action Bar */
+.action-card {
+  background: var(--surface-white);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  margin-bottom: 1.5rem;
+}
+
+.action-card:hover {
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Master Emergency Center Card */
+.emergency-dock-card {
+  background: linear-gradient(145deg, #ffffff, #fff5f5);
+  border: 2px solid rgba(230, 57, 70, 0.25);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(230, 57, 70, 0.12);
+}
+
+.live-location-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #edf2f7;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--secondary-navy);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--safety-green);
+  box-shadow: 0 0 8px var(--safety-green);
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Emergency Contact Cards */
+.contact-item-card {
+  background: var(--surface-white);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  transition: var(--transition-smooth);
+}
+
+.contact-item-card:hover {
+  border-color: var(--light-blue);
+  box-shadow: var(--shadow-subtle);
+}
+
+.contact-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(27, 38, 59, 0.08);
+  color: var(--secondary-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.badge-verified {
+  background-color: rgba(42, 157, 143, 0.15);
+  color: var(--safety-green);
+  font-weight: 600;
+  border: 1px solid rgba(42, 157, 143, 0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+.badge-unverified {
+  background-color: rgba(244, 162, 97, 0.2);
+  color: #c05621;
+  font-weight: 600;
+  border: 1px solid rgba(244, 162, 97, 0.4);
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+/* Audio Recording Widget */
+.audio-recorder-panel {
+  background: #f8fafc;
+  border-radius: var(--border-radius-md);
+  border: 1px dashed #cbd5e1;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.rec-timer {
+  font-family: monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin: 0.5rem 0;
+}
+
+.recording-pulse-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--emergency-red);
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: pulseDot 1s infinite;
+}
+
+/* Map Containers */
+#safe-route-map {
+  height: 420px;
+  border-radius: var(--border-radius-md);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  z-index: 10;
+}
+
+/* Police station card */
+.police-card {
+  border-left: 4px solid var(--secondary-navy);
+  padding: 1rem;
+  background: var(--surface-white);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Fake call full screen modal */
+#fake-call-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #1a202c 0%, #0d1117 100%);
+  color: #fff;
+  z-index: 100001;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 2rem 3rem;
+}
+
+#fake-call-overlay.active {
+  display: flex;
+}
+
+.fake-caller-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  margin: 0 auto 1.5rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.fake-caller-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.fake-call-status {
+  font-size: 1.05rem;
+  color: #a0aec0;
+  letter-spacing: 0.5px;
+}
+
+.fake-call-controls {
+  display: flex;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.btn-call-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-call-circle:hover {
+  transform: scale(1.1);
+}
+
+.btn-call-answer {
+  background-color: #22c55e;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.6);
+  animation: pulseDot 1.2s infinite;
+}
+
+.btn-call-reject {
+  background-color: #ef4444;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+}

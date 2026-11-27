@@ -1,0 +1,387 @@
+/* ==============================================================================
+   KAVACH-X V2 DESIGN SYSTEM & CORE STYLES
+   ============================================================================== */
+
+:root {
+  --primary-navy: #0d1b2a;
+  --secondary-navy: #1b263b;
+  --accent-blue: #415a77;
+  --light-blue: #778da9;
+  --off-white: #f8f9fa;
+  --surface-white: #ffffff;
+  --text-dark: #1b263b;
+  --text-muted: #6c757d;
+  
+  /* Emergency Red strictly for urgent safety actions */
+  --emergency-red: #e63946;
+  --emergency-dark-red: #d90429;
+  --emergency-glow: rgba(230, 57, 70, 0.45);
+  
+  /* Status Colors */
+  --safety-green: #2a9d8f;
+  --warning-amber: #f4a261;
+  --danger-crimson: #e76f51;
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --shadow-subtle: 0 4px 15px rgba(13, 27, 42, 0.06);
+  --shadow-elevated: 0 10px 30px rgba(13, 27, 42, 0.12);
+  --shadow-emergency: 0 0 35px rgba(230, 57, 70, 0.6);
+  
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f6f9;
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar-kavach {
+  background-color: var(--primary-navy);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+  padding: 0.85rem 0;
+}
+
+.navbar-kavach .navbar-brand {
+  color: var(--surface-white);
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-shield {
+  color: var(--emergency-red);
+  font-size: 1.6rem;
+}
+
+.navbar-kavach .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.navbar-kavach .nav-link:hover,
+.navbar-kavach .nav-link.active {
+  color: var(--surface-white);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Emergency Badges & Buttons */
+.btn-emergency {
+  background: linear-gradient(135deg, var(--emergency-red), var(--emergency-dark-red));
+  color: #fff !important;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 15px var(--emergency-glow);
+  transition: var(--transition-smooth);
+}
+
+.btn-emergency:hover,
+.btn-emergency:focus {
+  background: linear-gradient(135deg, var(--emergency-dark-red), #9b001a);
+  box-shadow: 0 6px 22px rgba(230, 57, 70, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-navy {
+  background-color: var(--secondary-navy);
+  color: #fff !important;
+  font-weight: 600;
+  border: none;
+  transition: var(--transition-smooth);
+}
+
+.btn-navy:hover {
+  background-color: var(--primary-navy);
+  transform: translateY(-1px);
+}
+
+/* Master SOS Button */
+.sos-master-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.btn-master-sos {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff4d5a, #c7001e);
+  color: #fff;
+  border: 6px solid #fff;
+  font-size: 2.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-emergency);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-master-sos .sos-subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.btn-master-sos:hover {
+  transform: scale(1.05);
+}
+
+.btn-master-sos:active {
+  transform: scale(0.96);
+}
+
+/* Pulsing radar waves around SOS button */
+.sos-radar-wave {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 3px solid var(--emergency-red);
+  opacity: 0;
+  pointer-events: none;
+  animation: radarPulse 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 1;
+}
+
+.sos-radar-wave:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.sos-radar-wave:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Feature Cards */
+.feature-card {
+  background: var(--surface-white);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.feature-icon-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.feature-icon-badge.icon-red {
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--emergency-red);
+}
+
+.feature-icon-badge.icon-blue {
+  background: rgba(27, 38, 59, 0.08);
+  color: var(--secondary-navy);
+}
+
+.feature-icon-badge.icon-green {
+  background: rgba(42, 157, 143, 0.1);
+  color: var(--safety-green);
+}
+
+.feature-icon-badge.icon-amber {
+  background: rgba(244, 162, 97, 0.15);
+  color: #d97706;
+}
+
+/* Black Emergency Screen Mode Overlay */
+#emergency-black-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  color: #ffffff;
+  z-index: 99999;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  overflow: hidden;
+  user-select: none;
+}
+
+#emergency-black-screen.active {
+  display: flex;
+}
+
+.black-screen-header {
+  text-align: center;
+}
+
+.black-screen-title {
+  color: #ff3344;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.black-screen-body {
+  text-align: center;
+  max-width: 480px;
+}
+
+.stealth-status-indicator {
+  font-size: 1.05rem;
+  color: #a0a0a0;
+  margin-top: 1rem;
+}
+
+.screen-exit-box {
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.btn-exit-stealth {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.btn-exit-stealth:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Toast Notifications */
+.kavach-toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 420px;
+}
+
+.kavach-toast {
+  background: var(--surface-white);
+  border-left: 5px solid var(--secondary-navy);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-elevated);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.kavach-toast.toast-error {
+  border-left-color: var(--emergency-red);
+}
+
+.kavach-toast.toast-success {
+  border-left-color: var(--safety-green);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Footer */
+footer.kavach-footer {
+  background-color: var(--primary-navy);
+  color: #b0c0d0;
+  padding: 2.5rem 0 1.5rem;
+  margin-top: auto;
+  font-size: 0.92rem;
+}
+
+footer.kavach-footer a {
+  color: #d0e0f0;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+footer.kavach-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.admin-stealth-link {
+  font-size: 0.78rem;
+  color: #556b82 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.admin-stealth-link:hover {
+  color: #9cb5cf !important;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn-master-sos {
+    width: 145px;
+    height: 145px;
+    font-size: 1.8rem;
+  }
+  .sos-radar-wave {
+    width: 145px;
+    height: 145px;
+  }
+}

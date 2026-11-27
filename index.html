@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAVACH-X | Emergency Response & Personal Safety Platform</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Leaflet CSS for Safe Routes & Mapping -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Kavach-X Custom Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-kavach sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-shield-shaded brand-shield"></i>
+        <span>KAVACH<span class="text-danger">-X</span></span>
+      </a>
+      <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <i class="bi bi-list fs-2 text-white"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Emergency Access</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tools-section">Safety Tools</a></li>
+          <li class="nav-item"><a class="nav-link" href="#safe-routes-section">Safe Routes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nearby-section">Nearby Help</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center" id="nav-auth-links">
+          <!-- Injected dynamically by app.js based on auth state -->
+          <li class="nav-item"><a class="nav-link" href="login.html">Sign In</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-outline-light px-3" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero & Primary Emergency Access Section -->
+  <section class="py-5" style="background: radial-gradient(circle at 50% 10%, #1b263b 0%, #0d1b2a 100%); color: #fff;">
+    <div class="container text-center py-3">
+      <span class="badge bg-danger px-3 py-2 text-uppercase letter-spacing-1 mb-3">
+        <i class="bi bi-broadcast me-1"></i> 24/7 Rapid Emergency Response Active
+      </span>
+      <h1 class="display-4 fw-extrabold text-white mb-3" style="font-weight: 800; letter-spacing: -1px;">
+        Instant Personal Protection & Emergency Alert
+      </h1>
+      <p class="lead text-light opacity-75 max-w-700 mx-auto mb-4" style="max-width: 680px;">
+        One-touch emergency dispatch notifying your verified emergency contacts, sharing live GPS coordinates, and initiating acoustic deterrents.
+      </p>
+
+      <!-- Central SOS Button with Radar Wave Animation -->
+      <div class="sos-master-wrap my-4">
+        <div class="sos-radar-wave"></div>
+        <div class="sos-radar-wave"></div>
+        <button type="button" class="btn-master-sos btn-trigger-sos" id="home-sos-btn" title="Press to Activate SOS">
+          <span>SOS</span>
+          <span class="sos-subtitle">EMERGENCY</span>
+        </button>
+      </div>
+
+      <!-- Guest Emergency Input Box (Guest Mode Requirement) -->
+      <div class="mx-auto mt-4 p-3 rounded-4 shadow-sm" style="max-width: 480px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <label for="guest-emergency-phone" class="form-label text-white small mb-0 fw-semibold">
+            <i class="bi bi-telephone-plus me-1 text-danger"></i> Guest Mode Emergency Phone
+          </label>
+          <span class="badge bg-light text-dark" style="font-size: 0.7rem;">No Sign-in Needed</span>
+        </div>
+        <div class="input-group">
+          <input type="tel" class="form-control" id="guest-emergency-phone" placeholder="Enter emergency mobile (+91...)" value="+919876543210">
+          <button class="btn btn-emergency btn-trigger-sos px-3" type="button">
+            <i class="bi bi-send-fill me-1"></i> Send SOS
+          </button>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2" style="font-size: 0.78rem; color: #a0aec0;">
+          <span><i class="bi bi-geo-alt-fill text-danger"></i> <span id="sos-location-text">Detecting GPS Location...</span></span>
+          <span>100% Encrypted & Free</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons: Buzzer & Fake Call -->
+      <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+        <button class="btn btn-warning btn-lg px-4 py-2 fw-bold btn-toggle-buzzer">
+          <i class="bi bi-megaphone-fill fs-5 me-2"></i>LOUD BUZZER
+        </button>
+        <button class="btn btn-outline-light btn-lg px-4 py-2 fw-bold btn-trigger-fake-call">
+          <i class="bi bi-telephone-inbound-fill fs-5 me-2"></i>FAKE INCOMING CALL
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Personal Safety Tools Section -->
+  <section class="py-5" id="tools-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="text-danger fw-bold text-uppercase small">Personal Safety Toolkit</span>
+        <h2 class="fw-bold mt-1 text-dark">Engineered For Critical Situations</h2>
+        <p class="text-muted">Tools that give you the upper hand when walking alone or facing potential threats.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Tool 1: Independent Buzzer -->
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-badge icon-amber">
+              <i class="bi bi-volume-up-fill"></i>
+            </div>
+            <h5 class="fw-bold text-dark mb-2">High-Decibel Siren</h5>
+            <p class="text-muted small mb-3">
+              Emits a continuous acoustic deterrent using oscillating dual frequencies. Works completely offline to scare off aggressors and attract public attention.
+            </p>
+            <button class="btn btn-outline-warning text-dark w-100 fw-bold btn-toggle-buzzer">
+              <i class="bi bi-megaphone me-1"></i> Toggle Alarm Buzzer
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 2: Fake Call Generator -->
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-badge icon-blue">
+              <i class="bi bi-phone-vibrate-fill"></i>
+            </div>
+            <h5 class="fw-bold text-dark mb-2">Simulated Decoy Call</h5>
+            <p class="text-muted small mb-3">
+              Trigger a realistic incoming phone call with ringtone and active call timer. Use it as an excuse to exit uncomfortable conversations or pretend someone is waiting.
+            </p>
+            <div class="input-group input-group-sm mb-2">
+              <input type="text" id="fake-caller-name-input" class="form-control" placeholder="Caller Name (e.g. Dad)" value="Dad">
+              <select id="fake-call-delay-select" class="form-select" style="max-width: 100px;">
+                <option value="0">Now</option>
+                <option value="5">5s Delay</option>
+                <option value="10">10s Delay</option>
+              </select>
+            </div>
+            <button class="btn btn-outline-primary w-100 fw-bold btn-trigger-fake-call">
+              <i class="bi bi-telephone-inbound me-1"></i> Trigger Fake Call
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 3: Audio Evidence Recording -->
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-badge icon-red">
+              <i class="bi bi-mic-fill"></i>
+            </div>
+            <h5 class="fw-bold text-dark mb-2">Covert Audio Evidence</h5>
+            <p class="text-muted small mb-3">
+              Capture ambient audio recordings directly in your browser. Record suspect dialogue or hostile interactions, preview instantly, and download securely.
+            </p>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="small fw-bold text-muted">
+                <span id="recording-status-dot" class="recording-pulse-dot d-none"></span>
+                Timer: <span id="recording-timer-display" class="font-monospace">00:00</span>
+              </span>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-danger btn-sm w-100 fw-bold" id="btn-start-recording">
+                <i class="bi bi-record-circle me-1"></i> Record Audio
+              </button>
+              <button class="btn btn-dark btn-sm w-100 fw-bold d-none" id="btn-stop-recording">
+                <i class="bi bi-stop-circle me-1"></i> Stop
+              </button>
+            </div>
+            <div id="audio-playback-container" class="mt-2 d-none">
+              <audio id="recording-audio-preview" controls class="w-100 mt-2" style="height: 34px;"></audio>
+              <div class="d-flex gap-2 mt-2">
+                <button class="btn btn-outline-secondary btn-sm w-100" id="btn-download-recording">
+                  <i class="bi bi-download me-1"></i> Download
+                </button>
+                <button class="btn btn-outline-primary btn-sm w-100" id="btn-save-vault-recording">
+                  <i class="bi bi-cloud-arrow-up me-1"></i> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safe Route Advisory Section with Leaflet Map -->
+  <section class="py-5 bg-white border-top border-bottom" id="safe-routes-section">
+    <div class="container">
+      <div class="row align-items-center mb-4">
+        <div class="col-lg-8">
+          <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-3 py-1 mb-2">Safe Navigation Corridors</span>
+          <h2 class="fw-bold text-dark">Safety-Oriented Route Advisory</h2>
+          <p class="text-muted mb-0">
+            Compare travel routes prioritized by proximity to active police stations, emergency booths, and continuous street illumination.
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <span class="text-muted small"><i class="bi bi-shield-check text-success me-1"></i> Verified Police Stations Mapping</span>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <form id="safe-route-form" class="card p-3 shadow-sm border-0 mb-3">
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Starting Point (GPS)</label>
+              <input type="text" id="route-origin-display" class="form-control form-control-sm bg-light" value="Detecting current GPS..." readonly>
+            </div>
+            <div class="mb-3">
+              <label for="route-destination-input" class="form-label small fw-bold text-muted">Destination Landmark / Address</label>
+              <input type="text" id="route-destination-input" class="form-control" placeholder="e.g. Metro Station, Tech Park, College Gate" value="Central Metro Station" required>
+            </div>
+            <button type="submit" class="btn btn-navy w-100 fw-bold">
+              <i class="bi bi-compass me-1"></i> Find Safe Route
+            </button>
+          </form>
+
+          <div id="route-disclaimer-box"></div>
+          <div id="route-options-container">
+            <div class="text-muted small p-3 text-center border rounded-3 bg-light">
+              Enter your destination to calculate safety scores and view police checkpoints along the route.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div id="safe-route-map"></div>
+          <div class="small text-muted mt-2 d-flex justify-content-between">
+            <span><i class="bi bi-circle-fill text-success me-1"></i> Primary Safe Corridor</span>
+            <span><i class="bi bi-shield-shaded text-primary me-1"></i> Police Stations Along Route</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Police Stations & Safety Volunteers Section -->
+  <section class="py-5" id="nearby-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="text-success fw-bold text-uppercase small">Local Support Network</span>
+        <h2 class="fw-bold mt-1 text-dark">Nearby Police Stations & Verified Volunteers</h2>
+        <p class="text-muted">Direct contact options to closest emergency assistance units.</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Police Stations -->
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm border-0 p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold text-dark mb-0"><i class="bi bi-building-shield text-danger me-2"></i>Police Stations</h5>
+              <span class="badge bg-danger">Dial 112 / 100</span>
+            </div>
+            <div id="nearby-police-container">
+              <div class="text-center py-4 text-muted"><span class="spinner-border spinner-border-sm"></span> Locating...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Safety Volunteers -->
+        <div class="col-lg-6">
+          <div class="card h-100 shadow-sm border-0 p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="fw-bold text-dark mb-0"><i class="bi bi-people-fill text-success me-2"></i>Community Volunteers</h5>
+              <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#volunteerRegisterModal">
+                <i class="bi bi-person-plus me-1"></i>Join as Volunteer
+              </button>
+            </div>
+            <div id="nearby-volunteers-container">
+              <div class="text-center py-4 text-muted"><span class="spinner-border spinner-border-sm"></span> Finding volunteers...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Stealth Mode Black Screen Overlay (Section 6 Requirement) -->
+  <div id="emergency-black-screen">
+    <div class="black-screen-header">
+      <div class="black-screen-title">EMERGENCY MODE ACTIVE</div>
+      <div class="text-white-50 small mt-1">Screen Dimmed for Personal Safety & Discretion</div>
+    </div>
+    
+    <div class="black-screen-body">
+      <div class="spinner-grow text-danger mb-3" role="status" style="width: 3rem; height: 3rem;"></div>
+      <div id="black-screen-status" class="stealth-status-indicator">
+        Acquiring GPS coordinates & dispatching alerts...
+      </div>
+      <div class="small text-white-50 mt-4">
+        Alerts are transmitting in the background. Emergency contacts and authorities will receive your coordinates.
+      </div>
+    </div>
+
+    <div class="screen-exit-box">
+      <button type="button" class="btn btn-exit-stealth" id="btn-exit-stealth-mode">
+        <i class="bi bi-unlock-fill me-2"></i>Exit Stealth Screen
+      </button>
+      <div class="text-white-50 mt-2" style="font-size: 0.72rem;">Press ESC or tap unlock button to resume normal display</div>
+    </div>
+  </div>
+
+  <!-- Fake Incoming Call Fullscreen Overlay (Section 9 Requirement) -->
+  <div id="fake-call-overlay">
+    <div class="text-center">
+      <div class="fake-caller-avatar">
+        <i class="bi bi-person-fill"></i>
+      </div>
+      <div class="fake-caller-name" id="fake-call-name-display">Dad</div>
+      <div class="fake-call-status" id="fake-call-status-display">Incoming Call...</div>
+    </div>
+
+    <div class="fake-call-controls">
+      <button class="btn-call-circle btn-call-reject" id="btn-fake-call-reject" title="Decline Call">
+        <i class="bi bi-telephone-x-fill"></i>
+      </button>
+      <button class="btn-call-circle btn-call-answer" id="btn-fake-call-answer" title="Answer Call">
+        <i class="bi bi-telephone-fill"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Volunteer Registration Modal -->
+  <div class="modal fade" id="volunteerRegisterModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="bi bi-shield-heart text-success me-2"></i>Register as Safety Volunteer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="register-volunteer-form">
+          <div class="modal-body">
+            <p class="small text-muted">Join our local mutual-aid safety network to assist women, students, and citizens in distress. Profile requires admin verification.</p>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Full Name</label>
+              <input type="text" class="form-control" id="vol-name" required placeholder="e.g. Rahul Sharma">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Mobile Phone</label>
+              <input type="tel" class="form-control" id="vol-phone" required placeholder="e.g. +919876543210">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Assigned Area / Sector</label>
+              <input type="text" class="form-control" id="vol-area" required placeholder="e.g. South Campus / Metro Station">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success btn-sm">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with Discreet Admin Link (Section 3 Requirement) -->
+  <footer class="kavach-footer">
+    <div class="container text-center">
+      <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+        <i class="bi bi-shield-lock-fill text-danger fs-5"></i>
+        <span class="fw-bold text-white fs-6">KAVACH-X Emergency Response Platform V2</span>
+      </div>
+      <p class="small text-muted mb-3" style="max-width: 600px; margin: 0 auto;">
+        Designed for personal safety, immediate distress signaling, and community protection. For life-threatening emergencies, always dial National Emergency 112.
+      </p>
+      <div class="border-top border-secondary pt-3 mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2 text-muted small">
+        <div>&copy; 2026 KAVACH-X. Open-source safety engineering.</div>
+        <div>
+          <!-- Discreet Admin Link per section 3: Small footer link reading "Sign in as Admin". No large button on public homepage. -->
+          <a href="admin.html" class="admin-stealth-link">Sign in as Admin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 & Leaflet Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Kavach-X Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/sos.js"></script>
+  <script src="js/buzzer.js"></script>
+  <script src="js/fakecall.js"></script>
+  <script src="js/recording.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/nearby.js"></script>
+</body>
+</html>
